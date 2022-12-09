@@ -1,0 +1,126 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Result</title>
+    <style type="text/css">
+    	body{
+            background-image: url('/static/result_background.png');
+            background-repeat: no-repeat;
+        }
+        #result {
+  			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  			border-collapse: collapse;
+  			width: 90%;
+  			border: 1px solid #292929;
+ 
+		}
+		#result td, #result th {
+			padding: 8px;
+		}
+		#result th {
+			border-bottom: 1px solid #292929;
+		}
+		#ques{
+			background-color: #abdaff;
+		}
+		#ans{
+			background-color: #f5fafa;
+		}
+		#result th {
+  			padding-top: 12px;
+  			padding-bottom: 12px;
+  			text-align: left;
+  			background-color: #1e1f24;
+  			color: white;
+		}
+		#serialCol{
+			background-color: #d6d6d6;
+			text-align: center;
+			border-bottom: 1px solid #292929;
+		}
+		.status[data-status="Positive"]{
+ 			background-color: #99ff99;
+ 			text-align: center;
+ 			border-bottom: 1px solid #292929;
+		}
+		.status[data-status="Negative"]{
+ 			background-color: #ff9999;
+ 			text-align: center;
+ 			border-bottom: 1px solid #292929;
+		}
+		#divTable{
+			padding-top: 20px;
+		}
+		#divHead{
+			margin-top: 150px;
+			text-align: center;
+			font-family: Arial Rounded MT Bold;
+			color: #9e0000;
+		}
+		@-webkit-keyframes tracking-in-contract-bck {
+		  0% {
+		    letter-spacing: 1em;
+		    -webkit-transform: translateZ(400px);
+		            transform: translateZ(400px);
+		    opacity: 0;
+		  }
+		  40% {
+		    opacity: 0.6;
+		  }
+		  100% {
+		    -webkit-transform: translateZ(0);
+		            transform: translateZ(0);
+		    opacity: 1;
+		  }
+		}
+		@keyframes tracking-in-contract-bck {
+		  0% {
+		    letter-spacing: 1em;
+		    -webkit-transform: translateZ(400px);
+		            transform: translateZ(400px);
+		    opacity: 0;
+		  }
+		  40% {
+		    opacity: 0.6;
+		  }
+		  100% {
+		    -webkit-transform: translateZ(0);
+		            transform: translateZ(0);
+		    opacity: 1;
+		  }
+		}
+		.tracking-in-contract-bck {
+			-webkit-animation: tracking-in-contract-bck 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-contract-bck 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+		}
+    </style> 
+</head>
+
+<body>
+	<div id="divHead" class="tracking-in-contract-bck">
+		<p style="font-size: 40px">Thankyou for taking the evaluation test!</p>
+		<p style="font-size: 30px">Given below is your evaluation report</p>
+	</div>
+    <div id="divTable">
+    	<table id="result" align="center">
+    		<tr>
+    			<th>Serial No.</th>
+    			<th>Ques/Ans Content</th>
+    			<th>Sentiment</th>
+    		</tr>
+    		{% for i in range(0, len) %}
+			<tr>
+    			<td rowspan="2" id="serialCol">{{ i }}.</td>
+    			<td id="ques">{{ question[i] }}</td>
+    			<td rowspan="2" id="senti" data-status="{{prediction[i]}}" class="status">{{ prediction[i]}} </td>
+    		</tr>
+    		<tr>
+    			<td id="ans">"{{ answer[i] }}"</td>
+    		</tr>
+    		{% endfor %}
+		</table>
+	</div>
+</body>
+</html>
